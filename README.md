@@ -1,2 +1,4 @@
-# Project1-CICD
-A simple python app
+# Continuous Intergration using Jenkins and Azure Container Repo
+
+
+
