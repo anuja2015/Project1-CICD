@@ -18,14 +18,14 @@ stages:
       steps:
         - task: Docker@2
           inputs:
-            containerRegistry: ${{ variables.containerRegistryServiceConnection }}
+            containerRegistry: 'dockerContainerRegistryConnection'
             command: 'login'
     - job:
       displayName: Build image
       steps:
         - task: Docker@2
           inputs:
-            containerRegistry: ${{ variables.containerRegistryServiceConnection }}
+            containerRegistry: 'dockerContainerRegistryConnection'
             repository: 'pythonproject'
             command: 'build'
             Dockerfile: 'Dockerfile'
@@ -35,7 +35,7 @@ stages:
       steps:
         - task: Docker@2
           inputs:
-            containerRegistry: ${{ variables.containerRegistryServiceConnection }}
+            containerRegistry: 'dockerContainerRegistryConnection'
             repository: 'pythonproject'
             command: 'push'
             tags: '$(Build.BuildNumber)'
