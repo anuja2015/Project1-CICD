@@ -1,1 +1,2 @@
-containerRegistryServiceConnection: 'dockerContainerRegistryConnection'
+variables:
+  containerRegistryServiceConnection: 'dockerContainerRegistryConnection'
