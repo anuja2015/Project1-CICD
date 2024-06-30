@@ -10,14 +10,16 @@ resources:
 
 variables:
   # Container registry service connection established during pipeline creation
-  dockerRegistryServiceConnection: '2d2246c8-f6dd-4eeb-9f82-3570b968d756'
   imageRepository: 'pythonapp'
   containerRegistry: 'pythonproject.azurecr.io'
   dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
-  tag: '$(Build.BuildId)'
+  tag: '$(Build.BuildNumber)'
 
   # Agent VM image name
-  vmImageName: 'ubuntu-latest'
+pool:
+  name: meluhapool
+
+
 
 stages:
 - stage: Build
@@ -25,15 +27,16 @@ stages:
   jobs:
   - job: Build
     displayName: Build
-    pool:
-      vmImage: $(vmImageName)
     steps:
+      
     - task: Docker@2
       displayName: Build and push an image to container registry
+      env:
+        DOCKERREGISTRYSERVICECONNECTION: $(dockerRegistryServiceConnection)
       inputs:
         command: buildAndPush
         repository: $(imageRepository)
         dockerfile: $(dockerfilePath)
-        containerRegistry: $(dockerRegistryServiceConnection)
+        containerRegistry: $DOCKERREGISTRYSERVICECONNECTION
         tags: |
           $(tag)
