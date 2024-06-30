@@ -13,6 +13,13 @@ stages:
   - stage: 
     displayName: Build and Push image to container registry
     jobs:
+    - job: 
+      displayName: Login to ACR
+      steps:
+        - task: Docker@2
+          inputs:
+            containerRegistry: ${{ variables.containerRegistryServiceConnection }}
+            command: 'login'
     - job:
       displayName: Build image
       steps:
