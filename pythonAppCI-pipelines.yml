@@ -18,7 +18,7 @@ stages:
       steps:
         - task: Docker@2
           inputs:
-            containerRegistry: ${{ containerRegistryServiceConnection }}
+            containerRegistry: ${{ variables.containerRegistryServiceConnection }}
             repository: 'pythonproject'
             command: 'build'
             Dockerfile: 'Dockerfile'
@@ -28,7 +28,7 @@ stages:
       steps:
         - task: Docker@2
           inputs:
-            containerRegistry: ${{ containerRegistryServiceConnection }}
+            containerRegistry: ${{ variables.containerRegistryServiceConnection }}
             repository: 'pythonproject'
             command: 'push'
             tags: '$(Build.BuildNumber)'
