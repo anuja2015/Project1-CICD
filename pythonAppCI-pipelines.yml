@@ -21,7 +21,7 @@ stages:
             containerRegistry: 'dockerContainerRegistryConnection'
             repository: 'pythonproject'
             command: 'build'
-            Dockerfile: '**/Dockerfile'
+            Dockerfile: 'Dockerfile'
             tags: '$(Build.BuildNumber)'
     - job: 
       displayName: Push image to container registry
